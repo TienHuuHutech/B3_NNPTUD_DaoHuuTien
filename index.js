@@ -9,8 +9,7 @@ let pageSize = 10;
 async function loadProducts() {
     const res = await fetch(url);
     allProducts = await res.json();
-    filteredProducts = allProducts;
-
+    filteredProducts = [...allProducts];
     render();
 }
 
@@ -25,25 +24,20 @@ function renderTable() {
 
     const start = (currentPage - 1) * pageSize;
     const end = start + pageSize;
-
     const pageItems = filteredProducts.slice(start, end);
 
     pageItems.forEach(p => {
-        const allImages = p.images
-            .map(img => `<img src="${img}" alt=""/>`)
-            .join('');
-
-        const categoryImage = `<img src="${p.category.image}" alt=""/>`;
+        const images = p.images.map(i => `<img src="${i}" />`).join('');
+        const cateImg = `<img src="${p.category.image}" />`;
 
         tbody.innerHTML += `
-      <tr>
-        <td>${p.id}</td>
-        <td>${p.title}</td>
-        <td>$${p.price}</td>
-        <td>${categoryImage}</td>
-        <td>${allImages}</td>
-      </tr>
-    `;
+        <tr>
+            <td>${p.id}</td>
+            <td>${p.title}</td>
+            <td>$${p.price}</td>
+            <td>${cateImg}</td>
+            <td>${images}</td>
+        </tr>`;
     });
 }
 
@@ -54,8 +48,8 @@ function renderPagination() {
 
     for (let i = 1; i <= totalPages; i++) {
         container.innerHTML += `
-      <button onclick="goToPage(${i})">${i}</button>
-    `;
+            <button onclick="goToPage(${i})">${i}</button>
+        `;
     }
 }
 
@@ -64,49 +58,41 @@ function goToPage(page) {
     renderTable();
 }
 
-// Search
+/* SEARCH */
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase();
-
     filteredProducts = allProducts.filter(p =>
         p.title.toLowerCase().includes(keyword)
     );
-
     currentPage = 1;
     render();
 });
 
-// Page size change
+/* PAGE SIZE */
 document.getElementById('pageSize').addEventListener('change', (e) => {
     pageSize = parseInt(e.target.value);
     currentPage = 1;
     render();
 });
+
+/* SORT */
 function sortByPriceAsc() {
     filteredProducts.sort((a, b) => a.price - b.price);
-    currentPage = 1;
     render();
 }
 
 function sortByPriceDesc() {
     filteredProducts.sort((a, b) => b.price - a.price);
-    currentPage = 1;
     render();
 }
 
 function sortByTitleAsc() {
-    filteredProducts.sort((a, b) =>
-        a.title.localeCompare(b.title)
-    );
-    currentPage = 1;
+    filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
     render();
 }
 
 function sortByTitleDesc() {
-    filteredProducts.sort((a, b) =>
-        b.title.localeCompare(a.title)
-    );
-    currentPage = 1;
+    filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
     render();
 }
 
