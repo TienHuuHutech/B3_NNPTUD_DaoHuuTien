@@ -1,0 +1,194 @@
+/* Body và background */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Container chứa toàn bộ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #333;
+    margin: 0;
+}
+
+/* Controls - Search, Page Size, Sort */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.search-box,
+.page-size,
+.sort-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 200px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Input và Select */
+input[type="text"],
+select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input[type="text"] {
+    flex: 1;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #333;
+}
+
+/* Buttons */
+button {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+button:active {
+    background-color: #000;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.pagination button {
+    margin: 0 3px;
+    min-width: 35px;
+}
+
+.pagination button.active {
+    background-color: #000;
+}
+
+/* Table wrapper để scroll trên mobile */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Header bảng */
+thead {
+    background: #333;
+    color: white;
+}
+
+thead th {
+    font-weight: bold;
+}
+
+/* Dòng xen kẽ - màu nhẹ nhàng hơn */
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect */
+tbody tr:hover {
+    background-color: #e8e8e8;
+}
+
+/* Ảnh hiển thị đầy đủ */
+td img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .search-box,
+    .page-size,
+    .sort-buttons {
+        width: 100%;
+    }
+
+    .sort-buttons {
+        flex-wrap: wrap;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    td img {
+        width: 60px;
+    }
+}
